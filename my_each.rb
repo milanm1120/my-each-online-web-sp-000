@@ -1,14 +1,15 @@
 def my_each(array)
-  if block_given?
-    new_array = []
-    i = 0
-    while i < array.length
-      new_array<<yield(array[i])
-    end
-    return array
-end
+  i = 0
+  return_values = []
+  while i < array.length
+    return_values << yield(array[i])
+    i += 1
+  end
 
-array = [1, 2, 3, 4]
-my_each(array) do |i|
-  puts i
+  if return_values.include?(false)
+    false
+  else
+    true
+  end
+    array
 end
